@@ -29,8 +29,8 @@ const About = () => {
         <FaArrowLeft className=" w-3 h-3" />
       </Link>
       <div>
-        <span>
-          Title:<span className="text-sm">{photo.title.toUpperCase()}</span>
+        <span className="text-sm font-semibold mb-2">
+          {photo.title.toUpperCase()}
         </span>
         <img className="w-96" src={photo.url} alt="" />
         <div>ID:{photo.id}</div>
