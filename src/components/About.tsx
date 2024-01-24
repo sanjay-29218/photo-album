@@ -21,12 +21,12 @@ const About = () => {
   if (!photo) return <>Loading...</>;
 
   return (
-    <div className="h-screen w-full flex justify-center bg-stone-200 p-9">
+    <div className="h-screen w-full flex justify-center bg-stone-200 p-9  pt-20 md:p-9 ">
       <Link
         to={"/"}
-        className="absolute top-8 left-5 bg-slate-400 rounded-full p-5"
+        className="absolute top-8 left-5 bg-slate-400 rounded-full p-3 md:p-5"
       >
-        <FaArrowLeft size={20} />
+        <FaArrowLeft className=" w-3 h-3" />
       </Link>
       <div>
         <span>

@@ -63,7 +63,7 @@ function App() {
         setOption={setOption}
       />
       <div className="flex flex-col p-7">
-        <div className="flex flex-wrap gap-20 p-5 ">
+        <div className="flex flex-wrap gap-4 md:gap-20 p-5 ">
           {photos.map((photo) => (
             <Link to={`/about/${photo.id}`}>
               {" "}
@@ -72,7 +72,7 @@ function App() {
           ))}
         </div>
         {!search && (
-          <div className="flex justify-end gap-4">
+          <div className="flex md:justify-end justify-center gap-4">
             <button
               onClick={() => {
                 setStart((prev) => (prev !== 0 ? prev - 20 : prev));
