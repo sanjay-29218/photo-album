@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -16,7 +16,7 @@ const About = () => {
     fetch(`https://jsonplaceholder.typicode.com/photos/${id}`)
       .then((res) => res.json())
       .then((data) => setPhoto(data));
-  }, []);
+  }, [id]);
   console.log("param", id);
   if (!photo) return <>Loading...</>;
 
