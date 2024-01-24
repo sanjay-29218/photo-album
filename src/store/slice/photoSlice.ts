@@ -1,6 +1,10 @@
 // src/redux/reducers.ts
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
+export interface GetPhotoPayload {
+  start: number;
+  limit: number;
+}
 export interface photoState {
   photos: {
     albumId: number;
@@ -10,16 +14,18 @@ export interface photoState {
     thumbnailUrl: string;
   }[];
   isLoading?: boolean;
+  error?: null | string;
 }
 
-const initialState: photoState = { photos: [], isLoading: false };
+const initialState: photoState = { photos: [], isLoading: false, error: null };
 
 const photoSlice = createSlice({
   name: "photo",
   initialState,
   reducers: {
-    getPhoto: (state) => {
+    getPhoto: (state, action: PayloadAction<GetPhotoPayload>) => {
       state.isLoading = true;
+      console.log(action.payload);
     },
     getPhotoSuccess: (state, action: PayloadAction<photoState>) => {
       state.photos = action.payload.photos;
@@ -27,6 +33,7 @@ const photoSlice = createSlice({
     },
     getPhotoFail: (state) => {
       state.isLoading = false;
+      state.error = "Failed to fetch photos";
     },
   },
 });

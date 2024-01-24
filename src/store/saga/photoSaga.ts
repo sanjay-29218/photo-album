@@ -1,23 +1,25 @@
 import { call, put, takeEvery } from "redux-saga/effects";
-import { photoAction, photoState } from "../slice/photoSlice";
+import { GetPhotoPayload, photoAction } from "../slice/photoSlice";
+import { PayloadAction } from "@reduxjs/toolkit";
 // import { GET_USER_FETCH, GET_USER_SUCCESS } from './actions';
 
-async function photoFetch() {
+async function photoFetch(start: number, limit: number) {
   return fetch(
-    "http://jsonplaceholder.typicode.com/photos?_start=0&_limit=5"
+    `http://jsonplaceholder.typicode.com/photos?_start=${start}&_limit=${limit}`
   ).then((response) => response.json());
 }
 
-function* workerGetPhotos() {
-  console.log("++++++++++++");
+function* workerGetPhotos(action: PayloadAction<GetPhotoPayload>) {
   try {
+    const { start, limit } = action.payload;
+    console.log("payload", action.payload);
     const photos: {
       albumId: number;
       id: number;
       title: string;
       url: string;
       thumbnailUrl: string;
-    }[] = yield call(photoFetch);
+    }[] = yield call(photoFetch, start, limit);
     yield put(photoAction.getPhotoSuccess({ photos }));
   } catch (err) {
     yield put(photoAction.getPhotoFail());
@@ -26,7 +28,7 @@ function* workerGetPhotos() {
 }
 
 function* photoSaga() {
-  yield takeEvery(photoAction.getPhoto, workerGetPhotos);
+  yield takeEvery(photoAction.getPhoto.type, workerGetPhotos);
 }
 
 export default photoSaga;
