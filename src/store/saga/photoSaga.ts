@@ -5,7 +5,7 @@ import { PayloadAction } from "@reduxjs/toolkit";
 
 async function photoFetch(start: number, limit: number) {
   return fetch(
-    `http://jsonplaceholder.typicode.com/photos?_start=${start}&_limit=${limit}`
+    `https://jsonplaceholder.typicode.com/photos?_start=${start}&_limit=${limit}`
   ).then((response) => response.json());
 }
 
