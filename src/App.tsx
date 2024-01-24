@@ -18,7 +18,9 @@ function App() {
   let photos = useSelector((state: RootState) => state.photo.photos);
 
   console.log("album", photos);
-  photos = photos?.filter((photo) => photo.title.includes(search));
+  photos = photos?.filter((photo) =>
+    photo.title.toLowerCase().includes(search.toLowerCase())
+  );
   const albumOptions = [
     ...new Set(
       photos?.map((photo) => {
